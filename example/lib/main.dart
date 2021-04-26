@@ -1,6 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_responsive_flex_grid/flutter_responsive_flex_grid.dart';
+import 'package:responsive_flex_grid/model/planets.dart';
+import 'package:responsive_flex_grid/widgets/banner.dart';
+import 'package:responsive_flex_grid/widgets/contact_us.dart';
+import 'package:responsive_flex_grid/widgets/footer.dart';
+import 'package:responsive_flex_grid/widgets/page_slider.dart';
+import 'package:responsive_flex_grid/widgets/planet_cards.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,73 +31,106 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<ResponsiveGridItem> list;
+  List<Planets> _planetList;
+
+  @override
+  void initState() {
+    _planetList = [
+      Planets(
+          name: 'Mercury',
+          description:
+              'Mercury - the smallest planet in our solar system and closest to the Sun - is only slightly larger than Earth’s Moon. Mercury is the fastest planet, zipping around the Sun every 88 Earth days.',
+          earthDays: '88 Earth Days',
+          url: 'assets/images/mercury.jpeg'),
+      Planets(
+          name: 'Venus',
+          description:
+              'Venus spins slowly in the opposite direction from most planets. A thick atmosphere traps heat in a runaway greenhouse effect, making it the hottest planet in our solar system.',
+          earthDays: '225 Earth Days',
+          url: 'assets/images/venus.jpeg'),
+      Planets(
+          name: 'Earth',
+          description:
+              'Earth - our home planet - is the only place we know of so far that’s inhabited by living things. It’s also the only planet in our solar system with liquid water on the surface.',
+          earthDays: '365.25 Days',
+          url: 'assets/images/earth.jpeg'),
+      Planets(
+          name: 'Mars',
+          description:
+              'Mars is a dusty, cold, desert world with a very thin atmosphere. There is strong evidence Mars was - billions of years ago - wetter and warmer, with a thicker atmosphere.',
+          earthDays: '1.88 Earth Years',
+          url: 'assets/images/mars.jpeg'),
+      Planets(
+          name: 'Jupiter',
+          description:
+              'Jupiter is more than twice as massive than the other planets of our solar system combined. The giant planet’s Great Red spot is a centuries-old storm bigger than Earth.',
+          earthDays: '11.86 Earth Years',
+          url: 'assets/images/jupiter.jpeg'),
+      Planets(
+          name: 'Saturn',
+          description:
+              'Adorned with a dazzling, complex system of icy rings, Saturn is unique in our solar system. The other giant planets have rings, but none are as spectacular as Saturn’s.',
+          earthDays: '29.45 Earth Years',
+          url: 'assets/images/saturn.jpeg'),
+      Planets(
+          name: 'Uranus',
+          description:
+              'Uranus - seventh planet from the Sun - rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin on its side.',
+          earthDays: '84 Earth Years',
+          url: 'assets/images/uranus.jpeg'),
+      Planets(
+          name: 'Neptune',
+          description:
+              'Neptune - the eighth and most distant major planet orbiting our Sun - is dark, cold and whipped by supersonic winds. It was the first planet located through mathematical calculations, rather than by telescope.',
+          earthDays: '164.82 Earth Years',
+          url: 'assets/images/neptune.jpeg')
+    ];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var string = (100/6).toString();
-    if(string.indexOf('.')==2){
-      string = string.substring(0, 5);
-    }
-    if(string.indexOf('.')==1){
-      string = string.substring(0, 4);
-    }
-    print(string);
+    final ds = MediaQuery.of(context).size;
     return Scaffold(
-      // backgroundColor: Color(0xFFF8F8F8),
+      backgroundColor: Color(0xFFF8F8F8),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ResponsiveGrid(
-                gridSpacing: 8,
-                children: [
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.red),
-                    xl: 100/4,
-                    xxl: 100/6,
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.green),
-                    xl: 100/4,
-                    xxl: 100/6,
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.blue),
-                    xl: 100/4,
-                    xxl: 100/6,
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.grey),
-                    xl: 100/4,
-                    xxl: 100/6,
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.black),
-                    xxl: 100/6,
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.red),
-                    xxl: 100/6,
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.green),
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.blue),
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.grey),
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.black),
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.yellowAccent),
-                  ),
-                  ResponsiveGridItem(
-                    child: _buildColorContainer(Colors.tealAccent),
-                  ),
-                ],
+              PlanetBanner(),
+              SizedBox(height: 56),
+              Text('Planets in Our Solar System',
+                  style: Theme.of(context).textTheme.headline4.copyWith(
+                      fontWeight: FontWeight.w900, color: Colors.black)),
+              SizedBox(height: 16),
+              Container(
+                width: 600,
+                alignment: Alignment.center,
+                child: Text(
+                  'An overview of the history, mythology and current scientific knowledge of the planets, moons and other objects in our solar system.',
+                  style: Theme.of(context).textTheme.subtitle1,
+                  textAlign: TextAlign.center,
+                ),
               ),
+              SizedBox(height: 32),
+              PageSlider(),
+              SizedBox(height: 32),
+              ResponsiveGrid(gridSpacing: 32, children: [
+                ..._planetList
+                    .map((e) => ResponsiveGridItem(
+                        xs: 100 / 1,
+                        sm: 100 / 1,
+                        md: 100 / 3,
+                        lg: 100 / 4,
+                        xl: 100 / 4,
+                        xxl: 100 / 6,
+                        child: PlanetCard(obj: e)))
+                    .toList()
+              ]),
+              ContactUs(),
+              Footer(),
             ],
           ),
         ),
@@ -100,13 +138,25 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _getPlanetGridWeb() {
+    return GridView.builder(
+      gridDelegate:
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+      itemBuilder: (context, index) => _planetList
+          .map((e) => PlanetCard(
+                obj: e,
+              ))
+          .toList()
+          .elementAt(index),
+    );
+  }
+
   Widget _buildColorContainer(Color color) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Container(
-        // margin: EdgeInsets.all(1),
-        color: color,
-      ),
+    return Container(
+      height: 100,
+      width: 200,
+      // margin: EdgeInsets.all(1),
+      color: color,
     );
   }
 }
