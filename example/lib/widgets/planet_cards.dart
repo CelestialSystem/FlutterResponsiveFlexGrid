@@ -26,15 +26,23 @@ class PlanetCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '${obj.name}',
-                style:
-                    textTheme.headline6.copyWith(fontWeight: FontWeight.w900),
+              Flexible(
+                child: FittedBox(
+                  child: Text(
+                    '${obj.name}',
+                    style: textTheme.headline6
+                        .copyWith(fontWeight: FontWeight.w900),
+                  ),
+                ),
               ),
-              Text(
-                '${obj.earthDays}',
-                style:
-                    textTheme.subtitle2.copyWith(fontWeight: FontWeight.w900),
+              Flexible(
+                child: FittedBox(
+                  child: Text(
+                    '${obj.earthDays}',
+                    style: textTheme.subtitle2
+                        .copyWith(fontWeight: FontWeight.w900),
+                  ),
+                ),
               ),
             ],
           ),

@@ -33,6 +33,7 @@ class PlanetBanner extends StatelessWidget {
                 children: [
                   Text(
                     'Beyond Horizons',
+                    textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline3?.copyWith(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
