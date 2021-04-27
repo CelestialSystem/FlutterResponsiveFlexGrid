@@ -6,38 +6,46 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 48, horizontal: 56),
+      padding: EdgeInsets.symmetric(vertical: 48, horizontal: 40),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            'Galaxy'.toUpperCase(),
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                .copyWith(color: Colors.white, letterSpacing: 8),
+          Flexible(
+            child: FittedBox(
+              child: Text(
+                'Galaxy'.toUpperCase(),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    .copyWith(color: Colors.white, letterSpacing: 8),
+              ),
+            ),
           ),
-          Row(
-            children: [
-              TextButton(
-                onPressed: () {},
-                child: Text('Home', style: TextStyle(color: Colors.white)),
+          Flexible(
+            child: FittedBox(
+              child: Row(
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: Text('Home', style: TextStyle(color: Colors.white)),
+                  ),
+                  SizedBox(
+                    width: 24,
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text('About', style: TextStyle(color: Colors.white)),
+                  ),
+                  SizedBox(
+                    width: 24,
+                  ),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text('Contact',
+                          style: TextStyle(color: Colors.white))),
+                ],
               ),
-              SizedBox(
-                width: 24,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text('About', style: TextStyle(color: Colors.white)),
-              ),
-              SizedBox(
-                width: 24,
-              ),
-              TextButton(
-                  onPressed: () {},
-                  child:
-                      Text('Contact', style: TextStyle(color: Colors.white))),
-            ],
+            ),
           ),
         ],
       ),

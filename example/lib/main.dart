@@ -102,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               PlanetBanner(),
               SizedBox(height: 56),
               Text('Planets in Our Solar System',
+                  textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline4.copyWith(
                       fontWeight: FontWeight.w900, color: Colors.black)),
               SizedBox(height: 16),
