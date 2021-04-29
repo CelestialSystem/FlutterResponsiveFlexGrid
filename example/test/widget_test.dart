@@ -15,9 +15,11 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
 
-    expect(find.byKey(Key('image_asset')), findsOneWidget);
-    await tester.pump();
-    expect(find.byKey(Key('image_asset')), findsOneWidget);
+    expect(find.text('Beyond Horizons'), findsOneWidget);
+    expect(find.text('GALAXY'), findsOneWidget);
+    // expect(find.byKey(Key('image_asset')), findsOneWidget);
+    // await tester.pump();
+    // expect(find.byKey(Key('image_asset')), findsOneWidget);
 
     // // Verify that our counter starts at 0.
     // expect(find.text('0'), findsOneWidget);
