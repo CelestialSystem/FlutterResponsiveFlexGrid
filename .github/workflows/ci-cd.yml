@@ -1,0 +1,324 @@
+name: FlutterResponsiveFlexGrid CICD
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+jobs:
+
+  setup-test-code-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.4'
+          channel: 'stable'
+
+      - name: Download Flutter Dependencies
+        run: flutter pub get
+
+      - name: Run Test with Code Coverage
+        run: flutter test --coverage --track-widget-creation
+
+      - name: Process Code Coverage Report
+        uses: romeovs/lcov-reporter-action@v0.2.16
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-file: ./coverage/lcov.info
+
+      - name: Download Flutter Dependencies for Example
+        run: flutter pub get
+        working-directory: example
+
+      - name: Run Test with Code Coverage for Example
+        run: flutter test --coverage --track-widget-creation
+        working-directory: example
+
+      - name: Process Code Coverage Report for Example
+        uses: romeovs/lcov-reporter-action@v0.2.16
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-file: ./example/coverage/lcov.info
+
+  build-for-android:
+    needs: setup-test-code-coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.4'
+          channel: 'stable'
+
+      - name: Download Flutter Dependencies
+        run: flutter pub get
+
+      - name: Download Flutter Dependencies for Example
+        run: flutter pub get
+        working-directory: example
+
+      - name: Build for Android
+        run: flutter build apk
+        working-directory: example
+
+      - name: Upload Android Artifects
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-artifects
+          path: example/build/app/
+
+  build-for-iPhone:
+    needs: setup-test-code-coverage
+    runs-on: macos-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.4'
+          channel: 'stable'
+
+      - name: Download Flutter Dependencies
+        run: flutter pub get
+
+      - name: Download Flutter Dependencies for Example
+        run: flutter pub get
+        working-directory: example
+
+      - name: Build for iPhone
+        run: flutter build ios --release --no-codesign
+        working-directory: example
+
+      - name: Upload iOS Artifects
+        uses: actions/upload-artifact@v2
+        with:
+          name: ios-artifacts
+          path: example/build/ios/
+
+  build-for-web:
+    needs: setup-test-code-coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.4'
+          channel: 'stable'
+
+      - run: flutter config --enable-web
+        working-directory: example
+
+      - name: Download Flutter Dependencies
+        run: flutter pub get
+
+      - name: Download Flutter Dependencies for Example
+        run: flutter pub get
+        working-directory: example
+
+      - name: Build for Web
+        run: flutter build web
+        working-directory: example
+
+      - name: Upload Web Artifects
+        uses: actions/upload-artifact@v2
+        with:
+          name: web-artifacts
+          path: example/build/web/
+
+  build-for-windows:
+    needs: setup-test-code-coverage
+    runs-on: windows-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.4'
+          channel: 'stable'
+
+      - run: flutter config --enable-windows-desktop
+        working-directory: example
+
+      - name: Download Flutter Dependencies
+        run: flutter pub get
+
+      - name: Download Flutter Dependencies for Example
+        run: flutter pub get
+        working-directory: example
+
+      - name: Build for Windows
+        run: flutter build windows
+        working-directory: example
+
+      - name: Upload Windows Artifects
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows-artifacts
+          path: example/build/windows/
+
+  build-for-linux:
+    needs: setup-test-code-coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.4'
+          channel: 'stable'
+
+      - run: flutter config --enable-linux-desktop
+        working-directory: example
+
+      - name: Download Flutter Dependencies
+        run: flutter pub get
+
+      - name: Download Flutter Dependencies for Example
+        run: flutter pub get
+        working-directory: example
+
+      - name: Build for Linux
+        run: flutter build linux
+        working-directory: example
+
+      - name: Upload Linux Artifects
+        uses: actions/upload-artifact@v2
+        with:
+          name: linux-artifacts
+          path: example/build/linux/
+
+  build-for-macos:
+    needs: setup-test-code-coverage
+    runs-on: macos-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.4'
+          channel: 'stable'
+
+      - run: flutter config --enable-macos-desktop
+        working-directory: example
+
+      - name: Download Flutter Dependencies
+        run: flutter pub get
+
+      - name: Download Flutter Dependencies for Example
+        run: flutter pub get
+        working-directory: example
+
+      - name: Build for MacOS
+        run: flutter build macos
+        working-directory: example
+
+      - name: Upload MacOS Artifects
+        uses: actions/upload-artifact@v2
+        with:
+          name: macos-artifacts
+          path: example/build/macos/
