@@ -26,21 +26,21 @@ class Header extends StatelessWidget {
               child: Row(
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: null,
                     child: Text('Home', style: TextStyle(color: Colors.white)),
                   ),
                   SizedBox(
                     width: 24,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: null,
                     child: Text('About', style: TextStyle(color: Colors.white)),
                   ),
                   SizedBox(
                     width: 24,
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: null,
                       child: Text('Contact',
                           style: TextStyle(color: Colors.white))),
                 ],

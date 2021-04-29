@@ -19,6 +19,8 @@ class ResponsiveGrid extends StatefulWidget {
 class _ResponsiveGridState extends State<ResponsiveGrid> {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    print("width: $width");
     // final breakpoint = _currentBreakPoint(context);
     final halfSpacing = (widget.gridSpacing ?? 0) / 2;
     return Padding(
@@ -27,6 +29,7 @@ class _ResponsiveGridState extends State<ResponsiveGrid> {
           builder: (BuildContext context, BoxConstraints constraints) {
         final breakpoint = _currentBreakPointFromConstraint(constraints);
         double spanWidth = constraints.maxWidth;
+        print("Widget Width: $spanWidth ");
         return SingleChildScrollView(
           child: Container(
             width: double.infinity,
@@ -118,44 +121,18 @@ class _ResponsiveGridItemState extends State<ResponsiveGridItem> {
 
 enum _BreakPoints { xs, sm, md, lg, xl, xxl }
 
-// extension _WidthSpanExtension on Span {
-//   int get flex {
-//     return this.index + 1;
-//   }
-// }
-
-// enum Span { s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12 }
-
-// _BreakPoints _currentBreakPoint(BuildContext context) {
-//   MediaQueryData mediaQueryData = MediaQuery.of(context);
-//   double width = mediaQueryData.size.width;
-//
-//   if (width < 576)
-//     return _BreakPoints.xs;
-//   else if (width < 768)
-//     return _BreakPoints.sm;
-//   else if (width < 992)
-//     return _BreakPoints.md;
-//   else if (width < 1200)
-//     return _BreakPoints.lg;
-//   else if (width < 1400)
-//     return _BreakPoints.xl;
-//   else
-//     return _BreakPoints.xxl;
-// }
-
 _BreakPoints _currentBreakPointFromConstraint(BoxConstraints constraints) {
   double width = constraints.maxWidth;
-
+  // print("Widget Width: $width ");
   if (width < 576)
     return _BreakPoints.xs;
-  else if (width < 768)
+  else if (width < 768 && width >= 576)
     return _BreakPoints.sm;
-  else if (width < 992)
+  else if (width < 992 && width >= 768)
     return _BreakPoints.md;
-  else if (width < 1200)
+  else if (width < 1200 && width >= 992)
     return _BreakPoints.lg;
-  else if (width < 1400)
+  else if (width < 1400 && width >= 1200)
     return _BreakPoints.xl;
   else
     return _BreakPoints.xxl;

@@ -29,7 +29,7 @@ class ContactUs extends StatelessWidget {
                 width: 24,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: null,
                 child: Text(
                   'Contact Us'.toUpperCase(),
                   style: Theme.of(context)
