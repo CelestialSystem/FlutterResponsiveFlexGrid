@@ -1,4 +1,4 @@
-# Responsive Flex Grid
+# Responsive Flex Grid [![FlutterResponsiveFlexGrid CICD](https://github.com/CelestialSystem/ResponsiveFlexGrid-Flutter/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/CelestialSystem/ResponsiveFlexGrid-Flutter/actions/workflows/ci-cd.yml)
 
 Flutter package to create Responsive Grid Design like Bootstrap.
 
