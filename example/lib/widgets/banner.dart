@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_flex_grid/widgets/header.dart';
 
 class PlanetBanner extends StatelessWidget {
-  const PlanetBanner({Key key}) : super(key: key);
+  const PlanetBanner({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

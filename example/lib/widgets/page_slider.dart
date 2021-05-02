@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PageSlider extends StatelessWidget {
-  const PageSlider({Key key}) : super(key: key);
+  const PageSlider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,7 @@ class PageSlider extends StatelessWidget {
                     '8 Planets',
                     style: Theme.of(context)
                         .textTheme
-                        .headline6
-                        .copyWith(fontWeight: FontWeight.w600),
+                        .headline6?.copyWith(fontWeight: FontWeight.w600),
                   ),
                   SizedBox(
                     width: 56,
@@ -41,8 +40,7 @@ class PageSlider extends StatelessWidget {
                     'Dwarf Planets',
                     style: Theme.of(context)
                         .textTheme
-                        .headline6
-                        .copyWith(fontWeight: FontWeight.w600),
+                        .headline6?.copyWith(fontWeight: FontWeight.w600),
                   ),
                   Divider(
                     color: Colors.black,
@@ -56,8 +54,7 @@ class PageSlider extends StatelessWidget {
                     'Other Objects',
                     style: Theme.of(context)
                         .textTheme
-                        .headline6
-                        .copyWith(fontWeight: FontWeight.w600),
+                        .headline6?.copyWith(fontWeight: FontWeight.w600),
                   ),
                   Divider(
                     color: Colors.black,

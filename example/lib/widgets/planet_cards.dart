@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../model/planets.dart';
 
 class PlanetCard extends StatelessWidget {
-  const PlanetCard({Key key, @required this.obj}) : super(key: key);
+  const PlanetCard({Key? key, required this.obj}) : super(key: key);
   final Planets obj;
 
   @override
@@ -30,8 +30,7 @@ class PlanetCard extends StatelessWidget {
                 child: FittedBox(
                   child: Text(
                     '${obj.name}',
-                    style: textTheme.headline6
-                        .copyWith(fontWeight: FontWeight.w900),
+                    style: textTheme.headline6?.copyWith(fontWeight: FontWeight.w900),
                   ),
                 ),
               ),
@@ -39,8 +38,7 @@ class PlanetCard extends StatelessWidget {
                 child: FittedBox(
                   child: Text(
                     '${obj.earthDays}',
-                    style: textTheme.subtitle2
-                        .copyWith(fontWeight: FontWeight.w900),
+                    style: textTheme.subtitle2?.copyWith(fontWeight: FontWeight.w900),
                   ),
                 ),
               ),

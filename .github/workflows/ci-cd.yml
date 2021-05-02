@@ -185,7 +185,8 @@ jobs:
         run: flutter build web --release
         working-directory: example
 
-      - name: Build for Web
+      - run: sed -i '/base href/d' example/build/web/index.html
+      - name: Hosting to GitHub Pages
         uses: erickzanardo/flutter-gh-pages@v3
         with:
           workingDir: example

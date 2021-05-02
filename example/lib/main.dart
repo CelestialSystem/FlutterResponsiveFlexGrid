@@ -31,8 +31,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<ResponsiveGridItem> list;
-  List<Planets> _planetList;
+  late List<ResponsiveGridItem> list;
+  late List<Planets> _planetList;
 
   @override
   void initState() {
@@ -91,7 +91,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final ds = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xFFF8F8F8),
       body: SafeArea(
@@ -103,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(height: 56),
               Text('Planets in Our Solar System',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline4.copyWith(
+                  style: Theme.of(context).textTheme.headline4?.copyWith(
                       fontWeight: FontWeight.w900, color: Colors.black)),
               SizedBox(height: 16),
               Container(
@@ -139,25 +138,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _getPlanetGridWeb() {
-    return GridView.builder(
-      gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-      itemBuilder: (context, index) => _planetList
-          .map((e) => PlanetCard(
-                obj: e,
-              ))
-          .toList()
-          .elementAt(index),
-    );
-  }
 
-  Widget _buildColorContainer(Color color) {
-    return Container(
-      height: 100,
-      width: 200,
-      // margin: EdgeInsets.all(1),
-      color: color,
-    );
-  }
 }

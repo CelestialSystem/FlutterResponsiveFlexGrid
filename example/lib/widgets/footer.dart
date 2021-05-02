@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({Key key}) : super(key: key);
+  const Footer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,7 @@ class Footer extends StatelessWidget {
           Text('Stay Connected',
               style: Theme.of(context)
                   .textTheme
-                  .headline6
-                  .copyWith(fontWeight: FontWeight.w600)),
+                  .headline6?.copyWith(fontWeight: FontWeight.w600)),
           SizedBox(
             height: 16,
           ),

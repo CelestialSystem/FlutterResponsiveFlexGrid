@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ContactUs extends StatelessWidget {
-  const ContactUs({Key key}) : super(key: key);
+  const ContactUs({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,7 @@ class ContactUs extends StatelessWidget {
                 'Want to know more?',
                 style: Theme.of(context)
                     .textTheme
-                    .headline4
-                    .copyWith(color: Colors.white, fontWeight: FontWeight.w100),
+                    .headline4?.copyWith(color: Colors.white, fontWeight: FontWeight.w100),
               ),
               SizedBox(
                 width: 24,
@@ -34,8 +33,7 @@ class ContactUs extends StatelessWidget {
                   'Contact Us'.toUpperCase(),
                   style: Theme.of(context)
                       .textTheme
-                      .button
-                      .copyWith(color: Colors.white),
+                      .button?.copyWith(color: Colors.white),
                 ),
                 style: TextButton.styleFrom(
                     padding: EdgeInsets.all(24),
