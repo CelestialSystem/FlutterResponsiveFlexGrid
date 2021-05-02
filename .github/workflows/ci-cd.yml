@@ -4,13 +4,11 @@ on:
   pull_request:
     branches:
       - main
-    paths-ignore:
-      - '**.md'
   push:
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
     branches:
       - main
-    paths-ignore:
-      - '**.md'
 
 jobs:
 
@@ -44,6 +42,7 @@ jobs:
         run: flutter test --coverage --track-widget-creation
 
       - name: Process Code Coverage Report
+        if: github.event_name == 'pull_request'
         uses: romeovs/lcov-reporter-action@v0.2.16
         with:
           github-token: ${{ secrets.CHECKOUT_TOKEN }}
@@ -58,6 +57,7 @@ jobs:
         working-directory: example
 
       - name: Process Code Coverage Report for Example
+        if: github.event_name == 'pull_request'
         uses: romeovs/lcov-reporter-action@v0.2.16
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -99,6 +99,7 @@ jobs:
         working-directory: example
 
       - name: Upload Android Artifects
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v2
         with:
           name: android-artifects
@@ -139,7 +140,8 @@ jobs:
         run: flutter build ios --release --no-codesign
         working-directory: example
 
-      - name: Upload iOS Artifects
+      - name: Upload Android Artifects
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v2
         with:
           name: ios-artifacts
@@ -183,7 +185,8 @@ jobs:
         run: flutter build web
         working-directory: example
 
-      - name: Upload Web Artifects
+      - name: Upload Android Artifects
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v2
         with:
           name: web-artifacts
@@ -228,6 +231,7 @@ jobs:
         working-directory: example
 
       - name: Upload Windows Artifects
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v2
         with:
           name: windows-artifacts
@@ -272,6 +276,7 @@ jobs:
         working-directory: example
 
       - name: Upload MacOS Artifects
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v2
         with:
           name: macos-artifacts
@@ -321,6 +326,7 @@ jobs:
         working-directory: example
 
       - name: Upload Linux Artifects
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v2
         with:
           name: linux-artifacts
