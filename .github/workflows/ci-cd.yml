@@ -1,8 +1,6 @@
 name: FlutterResponsiveFlexGrid CICD
 
 on:
-  schedule:
-    - cron: "0 0 * * 0"
   pull_request:
     branches:
       - main
@@ -25,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.CHECKOUT_TOKEN }}
 
       - name: Setup Java
         uses: actions/setup-java@v2
@@ -48,7 +46,7 @@ jobs:
       - name: Process Code Coverage Report
         uses: romeovs/lcov-reporter-action@v0.2.16
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.CHECKOUT_TOKEN }}
           lcov-file: ./coverage/lcov.info
 
       - name: Download Flutter Dependencies for Example
