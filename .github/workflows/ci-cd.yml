@@ -95,7 +95,7 @@ jobs:
         working-directory: example
 
       - name: Build for Android
-        run: flutter build apk
+        run: flutter build apk --release
         working-directory: example
 
       - name: Upload Android Artifects
@@ -182,8 +182,13 @@ jobs:
         working-directory: example
 
       - name: Build for Web
-        run: flutter build web
+        run: flutter build web --release
         working-directory: example
+
+      - name: Build for Web
+        uses: erickzanardo/flutter-gh-pages@v3
+        with:
+          workingDir: example
 
       - name: Upload Android Artifects
         if: startsWith(github.ref, 'refs/tags/')
@@ -227,7 +232,7 @@ jobs:
         working-directory: example
 
       - name: Build for Windows
-        run: flutter build windows
+        run: flutter build windows --release
         working-directory: example
 
       - name: Upload Windows Artifects
@@ -272,7 +277,7 @@ jobs:
         working-directory: example
 
       - name: Build for MacOS
-        run: flutter build macos
+        run: flutter build macos --release
         working-directory: example
 
       - name: Upload MacOS Artifects
@@ -322,7 +327,7 @@ jobs:
       - run: sudo apt-get install libgtk-3-dev
 
       - name: Build for Linux
-        run: flutter build linux --verbose
+        run: flutter build linux --release
         working-directory: example
 
       - name: Upload Linux Artifects
