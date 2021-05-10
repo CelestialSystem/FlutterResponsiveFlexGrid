@@ -20,7 +20,7 @@ class _ResponsiveGridState extends State<ResponsiveGrid> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    print("width: $width");
+    // print("width: $width");
     // final breakpoint = _currentBreakPoint(context);
     final halfSpacing = (widget.gridSpacing ?? 0) / 2;
     return Padding(
@@ -29,7 +29,7 @@ class _ResponsiveGridState extends State<ResponsiveGrid> {
           builder: (BuildContext context, BoxConstraints constraints) {
         final breakpoint = _currentBreakPointFromConstraint(constraints);
         double spanWidth = constraints.maxWidth;
-        print("Widget Width: $spanWidth ");
+        // print("Widget Width: $spanWidth ");
         return SingleChildScrollView(
           child: Container(
             width: double.infinity,

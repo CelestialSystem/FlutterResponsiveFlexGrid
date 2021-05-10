@@ -7,22 +7,25 @@ class PlanetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 24),
+      // padding: EdgeInsets.symmetric(vertical: 24),
       child: Column(
         children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: Image.asset(
-              '${obj.url}',
-              key: Key('image_asset'),
-              fit: BoxFit.cover,
-              width: 100,
-              height: 100,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12.0),
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: Image.asset(
+                '${obj.url}',
+                key: Key('image_asset'),
+                fit: BoxFit.cover,
+                width: 100,
+                height: 100,
+              ),
             ),
           ),
-          SizedBox(height: 32),
+          SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -30,7 +33,7 @@ class PlanetCard extends StatelessWidget {
                 child: FittedBox(
                   child: Text(
                     '${obj.name}',
-                    style: textTheme.headline6?.copyWith(fontWeight: FontWeight.w900),
+                    style: TextStyle(fontSize: 24),
                   ),
                 ),
               ),
@@ -38,16 +41,16 @@ class PlanetCard extends StatelessWidget {
                 child: FittedBox(
                   child: Text(
                     '${obj.earthDays}',
-                    style: textTheme.subtitle2?.copyWith(fontWeight: FontWeight.w900),
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 10),
           Text(
             '${obj.description}',
-            style: textTheme.subtitle2,
+            style: TextStyle(fontSize: 16),
           ),
         ],
       ),

@@ -4,7 +4,6 @@ import 'package:responsive_flex_grid/model/planets.dart';
 import 'package:responsive_flex_grid/widgets/banner.dart';
 import 'package:responsive_flex_grid/widgets/contact_us.dart';
 import 'package:responsive_flex_grid/widgets/footer.dart';
-import 'package:responsive_flex_grid/widgets/page_slider.dart';
 import 'package:responsive_flex_grid/widgets/planet_cards.dart';
 
 void main() {
@@ -100,33 +99,39 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               PlanetBanner(),
               SizedBox(height: 56),
-              Text('Planets in Our Solar System',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline4?.copyWith(
-                      fontWeight: FontWeight.w900, color: Colors.black)),
+              Container(
+                margin: EdgeInsets.only(left: 16, right: 16),
+                child: Text('Planets in Our Solar System',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline4?.copyWith(
+                        fontSize: 36,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black)),
+              ),
               SizedBox(height: 16),
               Container(
                 width: 600,
+                margin: EdgeInsets.only(left: 16, right: 16),
                 alignment: Alignment.center,
                 child: Text(
                   'An overview of the history, mythology and current scientific knowledge of the planets, moons and other objects in our solar system.',
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
               SizedBox(height: 32),
-              PageSlider(),
-              SizedBox(height: 32),
               ResponsiveGrid(gridSpacing: 32, children: [
                 ..._planetList
-                    .map((e) => ResponsiveGridItem(
+                    .map((item) => ResponsiveGridItem(
                         xs: 100 / 1,
-                        sm: 100 / 1,
+                        sm: 100 / 2,
                         md: 100 / 3,
                         lg: 100 / 4,
-                        xl: 100 / 4,
+                        xl: 100 / 5,
                         xxl: 100 / 6,
-                        child: PlanetCard(obj: e)))
+                        child: PlanetCard(obj: item)))
                     .toList()
               ]),
               ContactUs(),
@@ -137,6 +142,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
-
 }
