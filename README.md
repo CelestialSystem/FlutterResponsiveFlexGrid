@@ -1,4 +1,9 @@
-# Responsive Flex Grid [![FlutterResponsiveFlexGrid CICD](https://github.com/CelestialSystem/ResponsiveFlexGrid-Flutter/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/CelestialSystem/ResponsiveFlexGrid-Flutter/actions/workflows/ci-cd.yml)
+
+[![](package_banner.png)](https://celestialsys.com)
+
+# Responsive Flex Grid 
+
+[![build](https://github.com/CelestialSystem/ResponsiveFlexGrid-Flutter/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/CelestialSystem/ResponsiveFlexGrid-Flutter/actions/workflows/ci-cd.yml)
 
 Flutter package to create Responsive Grid Design like Bootstrap.
 
@@ -7,7 +12,7 @@ Flutter package to create Responsive Grid Design like Bootstrap.
 - Adding weighted width for xs: Extra Small, sm: Small, mb: Medium, lg: Large, xl: Extra Large, xxl: Extra Extra Large Devices
 - Adding Padding between Grid Items
 
-![](responsive_flex_grid.gif)
+![](example_anim.gif)
 
 # Usage
 
