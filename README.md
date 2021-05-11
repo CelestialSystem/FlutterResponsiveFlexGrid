@@ -1,7 +1,7 @@
 
 [![](package_banner.png)](https://celestialsys.com)
 
-# Responsive Flex Grid 
+# Flutter Responsive Flex Grid 
 
 [![build](https://github.com/CelestialSystem/ResponsiveFlexGrid-Flutter/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/CelestialSystem/ResponsiveFlexGrid-Flutter/actions/workflows/ci-cd.yml)
 
