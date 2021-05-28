@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 2021-05-28
 
-* TODO: Describe initial release.
+The initial release supports to MacOS, Linux, Window, Web, iOS and Android platforms

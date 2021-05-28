@@ -75,16 +75,4 @@ ResponsiveGrid(
       ),
     ]
 ```
-# TODO:
 
-- [x] Responsive Grid
-- [x] Responsive Grid Item
-- [x] Grid Item weight for Different Screens
-- [x] Grid Item Padding
-- [x] Mobile, Web, Widows, Linux, MacOS Support
-- [ ] Adding LICENSE 
-- [ ] Adding CONTRIBUTING 
-- [ ] Adding ISSUE_TEMPLATE 
-- [ ] Example Responsive Website 
-- [ ] Creating Release v1.0.0
-- [ ] Grid Animation
