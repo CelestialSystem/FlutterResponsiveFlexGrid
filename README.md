@@ -16,6 +16,32 @@ Flutter package to create Responsive Grid Design like Bootstrap.
 ![](iOS_example.gif)
 ![](android_example.gif)
 
+# Installation
+Use this package as a library
+
+Depend on it
+
+Run this command:
+
+With Flutter:
+```dart
+$ flutter pub add flutter_responsive_flex_grid
+```
+
+This will add a line like this to your package's pubspec.yaml (and run an implicit dart pub get):
+```dart
+dependencies:
+  flutter_responsive_flex_grid: ^0.0.1
+```
+Alternatively, your editor might support flutter pub get. Check the docs for your editor to learn more.
+
+Import it
+Now in your Dart code, you can use:
+```dart
+import 'package:flutter_responsive_flex_grid/flutter_responsive_flex_grid.dart';
+```
+
+
 
 # Usage
 

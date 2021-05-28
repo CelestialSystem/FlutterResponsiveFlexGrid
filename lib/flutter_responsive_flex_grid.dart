@@ -2,6 +2,7 @@ library flutter_responsive_flex_grid;
 
 import 'package:flutter/material.dart';
 
+//  ResponsiveGrid
 class ResponsiveGrid extends StatefulWidget {
   final List<ResponsiveGridItem> children;
   final double? gridSpacing;
@@ -16,12 +17,11 @@ class ResponsiveGrid extends StatefulWidget {
   _ResponsiveGridState createState() => _ResponsiveGridState();
 }
 
+//  ResponsiveGrid
 class _ResponsiveGridState extends State<ResponsiveGrid> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    // print("width: $width");
-    // final breakpoint = _currentBreakPoint(context);
+    // Get Halpspacing
     final halfSpacing = (widget.gridSpacing ?? 0) / 2;
     return Padding(
       padding: EdgeInsets.all(halfSpacing),
@@ -65,6 +65,7 @@ class _ResponsiveGridState extends State<ResponsiveGrid> {
   }
 }
 
+//  ResponsiveGridItem
 class ResponsiveGridItem extends StatefulWidget {
   final double? xs;
   final double? sm;
@@ -85,6 +86,7 @@ class ResponsiveGridItem extends StatefulWidget {
       this.child})
       : super(key: key);
 
+  // Get double width span
   double getWidthSpan(_BreakPoints _breakPoint) {
     switch (_breakPoint) {
       case _BreakPoints.xs:
@@ -106,12 +108,14 @@ class ResponsiveGridItem extends StatefulWidget {
   _ResponsiveGridItemState createState() => _ResponsiveGridItemState();
 }
 
+//  Reduced Extension
 extension _DoubleExtension on double {
   double get reduced {
     return this > 100 ? 100 : this;
   }
 }
 
+//  Responsive GridItem State
 class _ResponsiveGridItemState extends State<ResponsiveGridItem> {
   @override
   Widget build(BuildContext context) {
@@ -119,11 +123,12 @@ class _ResponsiveGridItemState extends State<ResponsiveGridItem> {
   }
 }
 
+// _BreakPoints
 enum _BreakPoints { xs, sm, md, lg, xl, xxl }
 
+// Return Current breakpoint
 _BreakPoints _currentBreakPointFromConstraint(BoxConstraints constraints) {
   double width = constraints.maxWidth;
-  // print("Widget Width: $width ");
   if (width < 576)
     return _BreakPoints.xs;
   else if (width < 768 && width >= 576)
@@ -138,6 +143,7 @@ _BreakPoints _currentBreakPointFromConstraint(BoxConstraints constraints) {
     return _BreakPoints.xxl;
 }
 
+// getDistributedWidgetList
 List<List<ResponsiveGridItem>> _getDistributedWidgetList(
     List<ResponsiveGridItem> items, _BreakPoints _breakPoint) {
   var tempTotalFlex = 0.0;
