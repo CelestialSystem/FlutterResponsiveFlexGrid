@@ -13,6 +13,9 @@ Flutter package to create Responsive Grid Design like Bootstrap.
 - Adding Padding between Grid Items
 
 ![](example_anim.gif)
+![](iOS_example.gif)
+![](android_example.gif)
+
 
 # Usage
 
@@ -72,16 +75,4 @@ ResponsiveGrid(
       ),
     ]
 ```
-# TODO:
 
-- [x] Responsive Grid
-- [x] Responsive Grid Item
-- [x] Grid Item weight for Different Screens
-- [x] Grid Item Padding
-- [x] Mobile, Web, Widows, Linux, MacOS Support
-- [ ] Adding LICENSE 
-- [ ] Adding CONTRIBUTING 
-- [ ] Adding ISSUE_TEMPLATE 
-- [ ] Example Responsive Website 
-- [ ] Creating Release v1.0.0
-- [ ] Grid Animation
