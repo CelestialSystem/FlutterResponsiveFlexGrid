@@ -102,3 +102,6 @@ ResponsiveGrid(
     ]
 ```
 
+## Sponsor
+Thanks to our sponsor [Celestial Systems](https://celestialsys.com/) for building the responsive flex grid widget. If you're interested in supporting Celestial, check out how they could move your application development forward at a fraction of the cost.
+
